@@ -1,5 +1,6 @@
 package com.example.hellocoding;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -96,20 +97,22 @@ public class CalendarMainActivity extends AppCompatActivity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (day.getOwner() == DayOwner.THIS_MONTH) {
-                        if (selectedDate == day.getDate()) {
-                            selectedDate = null;
-                            binding.calendarView.notifyDayChanged(day);
-                        } else {
-                            LocalDate oldDate = selectedDate;
-                            selectedDate = day.getDate();
-                            binding.calendarView.notifyDateChanged(day.getDate());
-                            if (oldDate != null) {
-                                binding.calendarView.notifyDateChanged(oldDate);
-                            }
-                        }
+                    Intent intent = new Intent(getApplicationContext(), DiaryActivity.class);
+                    startActivity(intent);
+//                    if (day.getOwner() == DayOwner.THIS_MONTH) {
+//                        if (selectedDate == day.getDate()) {
+//                            selectedDate = null;
+//                            binding.calendarView.notifyDayChanged(day);
+//                        } else {
+//                            LocalDate oldDate = selectedDate;
+//                            selectedDate = day.getDate();
+//                            binding.calendarView.notifyDateChanged(day.getDate());
+//                            if (oldDate != null) {
+//                                binding.calendarView.notifyDateChanged(oldDate);
+//                            }
+//                        }
 //                        menuItem.isVisible = selectedDate != null
-                    }
+
                 }
             });
         }

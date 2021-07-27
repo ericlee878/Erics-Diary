@@ -1,7 +1,10 @@
 5 Meetings
 4 - Should be spent developing
 1 - Should be spent setting up Google Play store and publish the app.
-Session: Monday, Wednesday, Thursday, Friday
+Session:
+1. Wednesday - Saving the diary information to the app, so that data persist even after app closed
+2. Thursday - Indicate that there is a diary in the CalendarMainAcitivty.
+3. Friday - Prepare for Hackathon
 Hackathon: Friday
 
 Features:
@@ -43,8 +46,8 @@ Things to think about:
 2. Come up icon design:
 
 Homework 7/2:
-1. Add Header to show what Month it is.
-2. When Calendar date is clicked, open up a Diary activity. When creating a new activity, make sure to pass the data around the Date, Month, Year to the next activity
 
-3. Diary page should allow user put "What did you do?" and "How was your overall feelings?". It should also allow user to insert images for that day.
+1. Find out how we can pass Date information from MainCalendarActivity to DiaryActivity, and text the DiaryActivity's header as currently selected date.
+2. Find out how we can indicate that the feeling button is selected.
+3. Create a button which user can click to finish writting diary. (Impement click listener for this button, when this button is clicked, go back to previous activity)
 
