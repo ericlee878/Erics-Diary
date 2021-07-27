@@ -1,0 +1,50 @@
+5 Meetings
+4 - Should be spent developing
+1 - Should be spent setting up Google Play store and publish the app.
+Session: Monday, Wednesday, Thursday, Friday
+Hackathon: Friday
+
+Features:
+* Calendar Section.
+- Show monthly basis diary.
+- Scrolling horizontally
+- Pick a certain date from monthly diary to see detail diary page.
+- Each day, we have diary section. In another section, we have notification section.
+
+* Diary section
+- "What did you do?"
+- "How was your overall feelings?"
+- Insert images for that day.
+
+* Notification section
+- 1. Remind user that the event is coming
+   - Event name, Event startTime, When the notification comes in
+- 2. Remind user of something to consider
+   - Overall note, Event start Date, When the notification come in
+
+- Event is set as date time.
+- User can update notification setting so that when they get notification can be editable.
+
+Pages:
+1. Calendar main page (Main Page)
+- We need to build Calendar UI
+- Research to see if we can use third party library for Calendaring UI where we can add stuffs to
+each dates
+- https://medium.com/@Patel_Prashant_/android-custom-calendar-with-events-fa48dfca8257
+- https://github.com/marcohc/roboto-calendar-view
+- https://github.com/marcohc/roboto-calendar-view/blob/master/sample/src/main/java/com/marcohc/robotocalendar/sample/MainActivity.java
+- https://github.com/marcohc/roboto-calendar-view/blob/master/sample/src/main/res/layout/activity_main.xml
+2. Calendar detail page (Where you go to previous/next date & select diary / notification section)
+3. Diary page
+4. Notification page
+
+Things to think about:
+1. Name of this app: Remindiary
+2. Come up icon design:
+
+Homework 7/2:
+1. Add Header to show what Month it is.
+2. When Calendar date is clicked, open up a Diary activity. When creating a new activity, make sure to pass the data around the Date, Month, Year to the next activity
+
+3. Diary page should allow user put "What did you do?" and "How was your overall feelings?". It should also allow user to insert images for that day.
+
