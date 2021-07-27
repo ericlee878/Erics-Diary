@@ -12,15 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hellocoding">
         <activity
+            android:name=".DiaryActivity"
+            android:label="@string/title_activity_diary"
+            android:theme="@style/Theme.Hellocoding.NoActionBar"></activity>
+        <activity
             android:name=".CalendarMainActivity"
             android:label="@string/title_activity_calendar_main"
             android:theme="@style/Theme.Hellocoding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

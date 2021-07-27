@@ -14,7 +14,7 @@ Features:
 * Diary section
 - "What did you do?"
 - "How was your overall feelings?"
-- Insert images for that day.
+- Insert images for that day. -- Extra
 
 * Notification section
 - 1. Remind user that the event is coming
