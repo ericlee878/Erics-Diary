@@ -7,6 +7,13 @@ Session:
 3. Friday - Prepare for Hackathon
 Hackathon: Friday
 
+Things to work on.
+1. Pass Date info to detail page (X) Eric
+2. Update EditText to show Hint. Eric
+3. Implement Button click listener for "Finish"
+4. Show indication that there is a diary in the Calendar Main Activity. (Min)
+5. Store Diary information in the device. (Min)
+
 Features:
 * Calendar Section.
 - Show monthly basis diary.
@@ -45,9 +52,10 @@ Things to think about:
 1. Name of this app: Remindiary
 2. Come up icon design:
 
-Homework 7/2:
+Homework:
 
 1. Find out how we can pass Date information from MainCalendarActivity to DiaryActivity, and text the DiaryActivity's header as currently selected date.
 2. Find out how we can indicate that the feeling button is selected.
 3. Create a button which user can click to finish writting diary. (Impement click listener for this button, when this button is clicked, go back to previous activity)
 
+1. Update EditText to have Hint instead of text for sayin g"Click here for ...)

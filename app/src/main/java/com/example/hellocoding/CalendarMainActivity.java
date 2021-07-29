@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.hellocoding.databinding.ActivityCalendarMainBinding;
 import com.example.hellocoding.databinding.CalendarDayLayoutBinding;
 import com.example.hellocoding.databinding.MonthViewContainerBinding;
+import com.example.hellocoding.sample.SecondActivity;
 import com.kizitonwose.calendarview.model.CalendarDay;
 import com.kizitonwose.calendarview.model.CalendarMonth;
 import com.kizitonwose.calendarview.model.DayOwner;
@@ -28,6 +29,9 @@ public class CalendarMainActivity extends AppCompatActivity {
     ActivityCalendarMainBinding binding;
     LocalDate selectedDate = null;
     LocalDate today = LocalDate.now();
+    private String day;
+    private String month;
+    private String year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +88,8 @@ public class CalendarMainActivity extends AppCompatActivity {
             @Override
             public void bind(MonthViewContainer viewContainer, CalendarMonth calendarMonth) {
                 viewContainer.textView.setText(calendarMonth.getYearMonth().getMonth().toString() + calendarMonth.getYear());
+                month = calendarMonth.getYearMonth().getMonth().toString();
+                year = String.valueOf(calendarMonth.getYear());
             }
         });
     }
@@ -113,6 +119,13 @@ public class CalendarMainActivity extends AppCompatActivity {
 //                        }
 //                        menuItem.isVisible = selectedDate != null
 
+                    Intent intent1 = new Intent(getApplicationContext(), SecondActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(DiaryActivity.DAY, String.valueOf(day));
+                    bundle.putString(DiaryActivity.MONTH, month);
+                    bundle.putString(DiaryActivity.YEAR, year);
+                    intent.putExtra(SecondActivity.BUNDLE, bundle);
+                    startActivity(intent);
                 }
             });
         }
@@ -125,4 +138,5 @@ public class CalendarMainActivity extends AppCompatActivity {
             super(view);
         }
     }
+
 }

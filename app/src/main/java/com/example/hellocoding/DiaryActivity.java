@@ -1,5 +1,6 @@
 package com.example.hellocoding;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -21,6 +22,10 @@ public class DiaryActivity extends AppCompatActivity {
     private ActivityDiaryBinding binding;
     public String diaryTextForDay;
     public String feelingForDay;
+    private boolean clickedFeelingForDay = false;
+    public static String DAY = "day";
+    public static String MONTH = "month";
+    public static String YEAR = "year";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +42,38 @@ public class DiaryActivity extends AppCompatActivity {
             });
         binding.sadButton.setOnClickListener(new View.OnClickListener () {
             @Override
-            public void onClick(View v){
-                feelingForDay = "sad";
+            public void onClick(View v) {
+                if (!clickedFeelingForDay) {
+                    feelingForDay = "sad";
+                    binding.sadButton.setTextColor(Color.BLACK);
+                    clickedFeelingForDay = true;
+                }
             }
         });
         binding.neutralButton.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View v){
-                feelingForDay = "neutral";
+                if (!clickedFeelingForDay) {
+                    feelingForDay = "neutral";
+                    binding.neutralButton.setTextColor(Color.BLACK);
+                    clickedFeelingForDay = true;
+                }
             }
         });
         binding.happyButton.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View v){
+                if (!clickedFeelingForDay){
                 feelingForDay = "happy";
+                binding.happyButton.setTextColor(Color.BLACK);
+                clickedFeelingForDay = true;
+                }
+            }
+        });
+        binding.finishDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                diaryTextForDay = binding.diaryText.getText().toString();
             }
         });
     }
