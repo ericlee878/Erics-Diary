@@ -19,11 +19,11 @@ public abstract class DiaryRoomDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static DiaryRoomDatabase getDatabase(final Context context) {
+    static DiaryRoomDatabase getDatabase() {
         if (INSTANCE == null) {
             synchronized (DiaryRoomDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    INSTANCE = Room.databaseBuilder(MyApplication.getInstance(),
                             DiaryRoomDatabase.class, "diary_database")
                             .build();
                 }

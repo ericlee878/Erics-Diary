@@ -15,8 +15,8 @@ public class DiaryRepository {
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
     // https://github.com/googlesamples
-    DiaryRepository(Application application) {
-        DiaryRoomDatabase db = DiaryRoomDatabase.getDatabase(application);
+    DiaryRepository() {
+        DiaryRoomDatabase db = DiaryRoomDatabase.getDatabase();
         diaryDao = db.diaryDao();
         diaries = diaryDao.getDiaries();
     }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DiaryViewModel extends ViewModel {
 
-    private DiaryRepository repository = new DiaryRepository(MyApplication.getInstance());
+    private DiaryRepository repository = new DiaryRepository();
 
     private final LiveData<List<Diary>> diaries = repository.getDiaries();
 

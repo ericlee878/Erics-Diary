@@ -29,9 +29,7 @@ import java.util.List;
 
 public class DiaryActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityDiaryBinding binding;
-    public String diaryTextForDay;
     public String feelingForDay;
     private boolean clickedFeelingForDay = false;
     public static String DAY = "day";
@@ -117,8 +115,11 @@ public class DiaryActivity extends AppCompatActivity {
         {
             @Override
             public void onClick (View v) {
+                viewModel.getDiaries().removeObservers(DiaryActivity.this);
                 Diary diary = new Diary(feelingForDay, binding.diaryText.getText().toString(), MONTH + " " + DAY + ", " + YEAR);
                 viewModel.insert(diary);
+                Toast.makeText(getApplicationContext(), "Diary saved", Toast.LENGTH_SHORT).show();
+                onBackPressed();
             }});
 
         viewModel.getDiaries().observe(this, new Observer<List<Diary>>() {
@@ -128,6 +129,7 @@ public class DiaryActivity extends AppCompatActivity {
                 {
                     if(diaries.get(i).dateTime.equals(MONTH + " " + DAY + ", " + YEAR))
                     {
+                        // TODO: Implement so that when diary is opened, it pre-fills diary into view
                         Toast.makeText(getApplicationContext(), "Found diary", Toast.LENGTH_SHORT).show();
                     }
                 }
