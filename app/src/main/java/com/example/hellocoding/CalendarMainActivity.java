@@ -29,9 +29,6 @@ public class CalendarMainActivity extends AppCompatActivity {
     ActivityCalendarMainBinding binding;
     LocalDate selectedDate = null;
     LocalDate today = LocalDate.now();
-    private String day;
-    private String month;
-    private String year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +85,6 @@ public class CalendarMainActivity extends AppCompatActivity {
             @Override
             public void bind(MonthViewContainer viewContainer, CalendarMonth calendarMonth) {
                 viewContainer.textView.setText(calendarMonth.getYearMonth().getMonth().toString() + calendarMonth.getYear());
-                month = calendarMonth.getYearMonth().getMonth().toString();
-                year = String.valueOf(calendarMonth.getYear());
             }
         });
     }
@@ -103,8 +98,6 @@ public class CalendarMainActivity extends AppCompatActivity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), DiaryActivity.class);
-                    startActivity(intent);
 //                    if (day.getOwner() == DayOwner.THIS_MONTH) {
 //                        if (selectedDate == day.getDate()) {
 //                            selectedDate = null;
@@ -119,12 +112,12 @@ public class CalendarMainActivity extends AppCompatActivity {
 //                        }
 //                        menuItem.isVisible = selectedDate != null
 
-                    Intent intent1 = new Intent(getApplicationContext(), SecondActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), DiaryActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString(DiaryActivity.DAY, String.valueOf(day));
-                    bundle.putString(DiaryActivity.MONTH, month);
-                    bundle.putString(DiaryActivity.YEAR, year);
-                    intent.putExtra(SecondActivity.BUNDLE, bundle);
+                    bundle.putString(DiaryActivity.DAY, String.valueOf(day.getDay()));
+                    bundle.putString(DiaryActivity.MONTH, day.getDate().getMonth().toString());
+                    bundle.putString(DiaryActivity.YEAR, day.getDate().getYear() + "");
+                    intent.putExtra(DiaryActivity.BUNDLE, bundle);
                     startActivity(intent);
                 }
             });

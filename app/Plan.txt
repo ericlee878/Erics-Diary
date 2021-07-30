@@ -8,11 +8,12 @@ Session:
 Hackathon: Friday
 
 Things to work on.
-1. Pass Date info to detail page (X) Eric
-2. Update EditText to show Hint. Eric
-3. Implement Button click listener for "Finish"
-4. Show indication that there is a diary in the Calendar Main Activity. (Min)
-5. Store Diary information in the device. (Min)
+1. Make sure user can't press "Finish" button unless user selected "Feeling" and "Diary". (Eric)
+
+2. Implement Button click listener for "Finish"
+3. Show indication that there is a diary in the Calendar Main Activity. (Min)
+4. Store Diary information in the device. (Min)
+
 
 Features:
 * Calendar Section.
