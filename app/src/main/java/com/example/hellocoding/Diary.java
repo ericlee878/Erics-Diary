@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "diary_table")
 public class Diary {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
     @NonNull
     @ColumnInfo(name = "feeling")
     public String feeling;
@@ -18,9 +18,9 @@ public class Diary {
     public String content;
     @NonNull
     @ColumnInfo(name = "datetime")
-    public long dateTime;
+    public String dateTime;
 
-    public Diary(@NonNull String feeling, @NonNull String content, @NonNull long dateTime) {
+    public Diary(@NonNull String feeling, @NonNull String content, @NonNull String dateTime) {
         this.feeling = feeling;
         this.content = content;
         this.dateTime = dateTime;

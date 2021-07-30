@@ -5,19 +5,27 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 
+import com.example.hellocoding.sample.SearchViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hellocoding.databinding.ActivityDiaryBinding;
+
+import java.util.List;
 
 public class DiaryActivity extends AppCompatActivity {
 
@@ -30,6 +38,7 @@ public class DiaryActivity extends AppCompatActivity {
     public static String MONTH = "month";
     public static String YEAR = "year";
     public static String BUNDLE = "bundle";
+    public DiaryViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +52,15 @@ public class DiaryActivity extends AppCompatActivity {
 
         binding = ActivityDiaryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(DiaryViewModel.class);
 
-        binding.diaryText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                diaryTextForDay = binding.diaryText.getText().toString();
-            }
-            });
+        //
+//        binding.diaryText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                diaryTextForDay = binding.diaryText.getText().toString();
+//            }
+//            });
 
         binding.sadButton.setOnClickListener(new View.OnClickListener () {
             @Override
@@ -59,6 +70,7 @@ public class DiaryActivity extends AppCompatActivity {
                     binding.happyButton.setTextColor(Color.WHITE);
                     binding.neutralButton.setTextColor(Color.WHITE);
                     clickedFeelingForDay = true;
+                updateButtonState();
             }
         });
         binding.neutralButton.setOnClickListener(new View.OnClickListener () {
@@ -69,6 +81,7 @@ public class DiaryActivity extends AppCompatActivity {
                     binding.happyButton.setTextColor(Color.WHITE);
                     binding.sadButton.setTextColor(Color.WHITE);
                     clickedFeelingForDay = true;
+                updateButtonState();
             }
         });
         binding.happyButton.setOnClickListener(new View.OnClickListener () {
@@ -79,18 +92,54 @@ public class DiaryActivity extends AppCompatActivity {
                 binding.sadButton.setTextColor(Color.WHITE);
                 binding.neutralButton.setTextColor(Color.WHITE);
                 clickedFeelingForDay = true;
+                updateButtonState();
             }
         });
-        if(clickedFeelingForDay && !diaryTextForDay.isEmpty()) {
-            binding.finishDiary.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    diaryTextForDay = binding.diaryText.getText().toString();
-                }
-            });
-        }
+
+        binding.diaryText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateButtonState();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
 
         binding.dateHeader.setText(MONTH + " " + DAY + ", " + YEAR);
         binding.dateHeader.setGravity(Gravity.CENTER);
+        binding.finishDiary.setEnabled(false);
+
+        binding.finishDiary.setOnClickListener(new View.OnClickListener ()
+        {
+            @Override
+            public void onClick (View v) {
+                Diary diary = new Diary(feelingForDay, binding.diaryText.getText().toString(), MONTH + " " + DAY + ", " + YEAR);
+                viewModel.insert(diary);
+            }});
+
+        viewModel.getDiaries().observe(this, new Observer<List<Diary>>() {
+            @Override
+            public void onChanged(List<Diary> diaries) {
+                for(int i=0;i<diaries.size();i++)
+                {
+                    if(diaries.get(i).dateTime.equals(MONTH + " " + DAY + ", " + YEAR))
+                    {
+                        Toast.makeText(getApplicationContext(), "Found diary", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+
+    private void updateButtonState() {
+        if (clickedFeelingForDay && !binding.diaryText.getText().toString().isEmpty()) {
+            binding.finishDiary.setEnabled(true);
+        } else {
+            binding.finishDiary.setEnabled(false);
+        }
     }
 }
